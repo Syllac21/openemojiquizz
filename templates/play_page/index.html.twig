@@ -10,34 +10,43 @@
 
 <div class="example-wrapper">
     <h1>Quizz</h1>
-    <table>
-    <thead>
-        <tr>
-        <th>proposition 1</th>
-        <th>proposition 2</th>
-        <th>proposition 3</th>
-        <th>votre réponse</th>
-        {% if valideResponses == true %}
-            <th>Bonne réponse</th>
-        {% endif %}
-        </tr>
-    </thead>
-        
-    {# {{ dump(questions) }} #}
-        {% for question in questions %}
-            <tr>
-                <td><img src="{{ asset('images/emoji/' ~ question.image1)}}" alt="oups"></td>
-                <td><img src="{{ asset('images/emoji/' ~ question.image2)}}" alt="oups"></td>
-                <td><img src="{{ asset('images/emoji/' ~ question.image3)}}" alt="oups"></td>
-                <td><input type="text"></td>
-                {% if valideResponses == true %}    
-                    <td>{{question.response}}</td>
+    <form action="{{path('app_validation')}}" method="POST">
+        <table>
+            <thead>
+                <tr>
+                <th>proposition 1</th>
+                <th>proposition 2</th>
+                <th>proposition 3</th>
+                <th>votre réponse</th>
+                {% if valideResponses == true %}
+                    <th>Bonne réponse</th>
                 {% endif %}
-            </tr>
-        {% else %}
-            <li>Aucune question</li>
-        {% endfor %}
-    </table>
-    <button id='btn-validate'>valider</button>
+                </tr>
+            </thead>
+            
+        {# {{ dump(questions) }} #}
+            {% for question in questions %}
+                <tr>
+                    <td><img src="{{ asset('images/emoji/' ~ question.image1 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question.image2 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question.image3 ~ '.png')}}" alt="oups"></td>
+                    {# {% if validate == true %} #}
+                        {# {% if responseUser is defined%}
+                            <td>{{responseUser.response{{loot.index}}}}</td>
+                        {% endif %} #}
+                    {# {% endif %} #}
+                    <td><input type="text" name="response{{ loop.index }}"></td>
+                    {% if valideResponses == true %}    
+                        <td>{{question.response}}</td>
+                    {% endif %}
+                </tr>
+                <input type="hidden" name="id{{ loop.index }}" value="{{ question.id }}">
+            {% else %}
+                <li>Aucune question</li>
+            {% endfor %}
+        </table>
+        <button type='submit' id='btn-validate'>valider</button>
+    </form>
+    <p>URL action du formulaire : {{ path('app_validation') }}</p>
 </div>
 {% endblock %}
