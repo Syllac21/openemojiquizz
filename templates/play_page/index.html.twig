@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlayPageController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Quizz</h1>
+    <table>
+    <thead>
+        <tr>
+        <th>proposition 1</th>
+        <th>proposition 2</th>
+        <th>proposition 3</th>
+        <th>votre réponse</th>
+        {% if valideResponses == true %}
+            <th>Bonne réponse</th>
+        {% endif %}
+        </tr>
+    </thead>
+        
+    {# {{ dump(questions) }} #}
+        {% for question in questions %}
+            <tr>
+                <td><img src="{{ asset('images/emoji/' ~ question.image1)}}" alt="oups"></td>
+                <td><img src="{{ asset('images/emoji/' ~ question.image2)}}" alt="oups"></td>
+                <td><img src="{{ asset('images/emoji/' ~ question.image3)}}" alt="oups"></td>
+                <td><input type="text"></td>
+                {% if valideResponses == true %}    
+                    <td>{{question.response}}</td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <li>Aucune question</li>
+        {% endfor %}
+    </table>
+    <button id='btn-validate'>valider</button>
+</div>
+{% endblock %}
