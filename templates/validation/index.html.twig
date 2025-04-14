@@ -9,8 +9,33 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>proposition 1</th>
+                <th>proposition 2</th>
+                <th>proposition 3</th>
+                <th>Votre réponse</th>
+                <th>Bonne réponse</th>
+                <th>juste/faux</th>
+            </tr>
+        </thead>
+        <tbody>
 
-    {{ dump(datas) }}
+            {% for question in questions %}
+            {# {{ dump(question['question'][0]) }} #}
+                <tr class ="{% if (question['isCorrect'] == true) %} correct {% endif %}">
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image1 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image2 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image3 ~ '.png')}}" alt="oups"></td>
+                    <td>{{ responses['response' ~ loop.index] }}</td>
+                    <td>{{ question['question'][0].response }}</td>
+                    <td>{{ question.isCorrect}} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>votre score : {{score}}/5</div>
 </div>
 {% endblock %}

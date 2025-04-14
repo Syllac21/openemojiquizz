@@ -10,7 +10,11 @@
 
 <div class="example-wrapper">
     <h1>Quizz</h1>
-    <form action="{{path('app_validation')}}" method="POST">
+    {{ form_start(form,{
+        'action': path('app_validation'),
+        'method': 'POST'
+    }) }}
+    
         <table>
             <thead>
                 <tr>
@@ -18,9 +22,6 @@
                 <th>proposition 2</th>
                 <th>proposition 3</th>
                 <th>votre réponse</th>
-                {% if valideResponses == true %}
-                    <th>Bonne réponse</th>
-                {% endif %}
                 </tr>
             </thead>
             
@@ -30,23 +31,15 @@
                     <td><img src="{{ asset('images/emoji/' ~ question.image1 ~ '.png')}}" alt="oups"></td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image2 ~ '.png')}}" alt="oups"></td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image3 ~ '.png')}}" alt="oups"></td>
-                    {# {% if validate == true %} #}
-                        {# {% if responseUser is defined%}
-                            <td>{{responseUser.response{{loot.index}}}}</td>
-                        {% endif %} #}
-                    {# {% endif %} #}
-                    <td><input type="text" name="response{{ loop.index }}"></td>
-                    {% if valideResponses == true %}    
-                        <td>{{question.response}}</td>
-                    {% endif %}
+                    <td>{{ form_widget(attribute(form, 'response' ~ loop.index)) }}</td>
+                    
                 </tr>
-                <input type="hidden" name="id{{ loop.index }}" value="{{ question.id }}">
+                {{ form_widget(attribute(form, 'id' ~ loop.index)) }}
             {% else %}
                 <li>Aucune question</li>
             {% endfor %}
         </table>
         <button type='submit' id='btn-validate'>valider</button>
-    </form>
-    <p>URL action du formulaire : {{ path('app_validation') }}</p>
+    {{ form_end(form) }}
 </div>
 {% endblock %}

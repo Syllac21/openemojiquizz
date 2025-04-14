@@ -1,3 +1,73 @@
 body {
-    background-color: skyblue;
+    background-color: teal;
+    margin: 0;
+    padding: 0;
+}
+/* ----------------------------------------------------- */
+/* Style de base pour la barre de navigation */
+/* ----------------------------------------------------- */
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333; 
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.navbar li {
+    flex: 1;
+    text-align: center;
+}
+
+
+.navbar li a {
+    display: block;
+    color: white; 
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: background-color 0.3s ease; 
+}
+
+
+.navbar li a:hover {
+    background-color: #111; 
+}
+
+
+.navbar li a.active {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+/* ----------------------------------------------------- */
+/* classe Bouton jouer */
+/* ----------------------------------------------------- */
+
+.boutonJouer{
+    text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 15px;
+    background-color: grey; 
+    color: white;
+    border: 1px solid gray;
+    border-style:inset;
+}
+
+
+.BoutonJouer:hover{
+    background-color: rgb(224, 223, 223);
+    color:darkgrey;
+}
+
+/* ----------------------------------------------------- */
+/* classe réponses justes */
+/* ----------------------------------------------------- */
+
+.correct {
+    background-color: green;
 }
