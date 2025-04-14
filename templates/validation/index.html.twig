@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    
+    {{ dump(user) }}
     <table>
         <thead>
             <tr>
@@ -26,11 +26,11 @@
             {% for question in questions %}
             {# {{ dump(question['question'][0]) }} #}
                 <tr class ="{% if (question['isCorrect'] == true) %} correct {% endif %}">
-                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image1 ~ '.png')}}" alt="oups"></td>
-                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image2 ~ '.png')}}" alt="oups"></td>
-                    <td><img src="{{ asset('images/emoji/' ~ question['question'][0].image3 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'].image1 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'].image2 ~ '.png')}}" alt="oups"></td>
+                    <td><img src="{{ asset('images/emoji/' ~ question['question'].image3 ~ '.png')}}" alt="oups"></td>
                     <td>{{ responses['response' ~ loop.index] }}</td>
-                    <td>{{ question['question'][0].response }}</td>
+                    <td>{{ question['question'].response }}</td>
                     <td>{{ question.isCorrect}} </td>
                 </tr>
             {% endfor %}

@@ -23,6 +23,16 @@ final class PlayPageController extends AbstractController
             return $q->getId();
         }, $question);
         $session->set('ids', $ids);
+        $categories =[];
+        $test =$question[0]->getCategories()[0]->getname();
+        foreach ($question as $index=>$q) {
+            $cat='';
+            foreach($q->getCategories() as $category) {
+                $newCat = $category->getName();
+                $cat = $cat . ' ' . $newCat;
+            }
+            $categories[$index] = $cat;
+        }
 
         
         $form = $this->createForm(ResponseUserType::class);
@@ -31,6 +41,8 @@ final class PlayPageController extends AbstractController
             
             'questions' => $question,
             'form' => $form->createView(),
+            'categories' => $categories,
+            'test' => $test,
         ]);
     }
 }

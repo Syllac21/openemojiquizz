@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Question;
 use App\Form\ResponseUserType;
 use App\Repository\QuestionRepository;
-use Attribute;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +30,7 @@ final class ValidationController extends AbstractController
     }
 
     #[Route('/validation/result', name: 'app_validation_result')]
-    public function result(SessionInterface $session, QuestionRepository $questionRepository): Response
+    public function result(SessionInterface $session, QuestionRepository $questionRepository, EntityManagerInterface $entityManager): Response
     {
     $responses = $session->get('response', []);
     $ids = $session->get('ids', []);
@@ -44,7 +44,7 @@ final class ValidationController extends AbstractController
         $userResponse = $responses[$responseKey] ?? '';
 
         // Compare la réponse de l'utilisateur à la bonne réponse
-        $isCorrect = (strtolower(trim($userResponse)) === strtolower(trim($question[0]->getResponse())));
+        $isCorrect = (strtolower(trim($userResponse)) === strtolower(trim($question->getResponse())));
         // $isCorrect = false;
 
         // Ajoute la question au tableau avec l'info si la réponse est correcte
@@ -56,13 +56,25 @@ final class ValidationController extends AbstractController
         if ($isCorrect) {
             $score++;
         }
+
+        // stocker la variable score dans la table User
+        $user = $this->getUser();
+
+        if ($user) {
+            $user->setScore($score);
+            $entityManager->persist($user);
+            $entityManager->flush();
+            
+        }
     }
+
 
         return $this->render('validation/index.html.twig', [
             'responses' => $responses,
             'questions' => $sortedQuestions,
             'session' => $session,
             'score' => $score,
+            'user' => $user,
         ]);
     }
 }

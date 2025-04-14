@@ -25,9 +25,10 @@
                 </tr>
             </thead>
             
-        {# {{ dump(questions) }} #}
+        {# {{ dump(categories) }} #}
             {% for question in questions %}
                 <tr>
+                    <td> {{categories[loop.index -1]}} </td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image1 ~ '.png')}}" alt="oups"></td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image2 ~ '.png')}}" alt="oups"></td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image3 ~ '.png')}}" alt="oups"></td>
