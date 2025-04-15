@@ -1,10 +1,29 @@
 <header>
-<ul class="navbar">
-    <li><a href="{{ path('app_home_page') }}">Accueil</a></li>
-    <li><a href="{{ path('app_play_page') }}">Jeux</a></li>
-    {% if  is_granted('ROLE_ADMIN') %}
-    <li><a href="{{ path('app_question_new') }}">Créer une question</a></li>
-    <li><a href="{{path('app_category_new')}}">Créer une catégorie</a></li>
-    {% endif %}
-</ul>
+    <ul class="navbar">
+        {% if app.user %}
+            <li><a href="{{ path('app_home_page') }}">Accueil</a></li>
+            <li><a href="{{ path('app_play_page') }}">Jeux</a></li>
+            <li><a href="{{ path('app_score') }}">Score</a></li>
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+        {% else %}
+            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+            <li><a href="{{ path('app_register')}}">Créer un compte</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="dropdown">
+                <p class="dropbtn">Question</p>
+                <div class="dropdown-content">
+                    <a href="{{ path('app_question_new') }}">Nouvelle question</a>
+                    <a href="{{ path('app_question_index') }}">Liste des questions</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <p class="dropbtn">Catégories</p>
+                <div class="dropdown-content">
+                    <a href="{{ path('app_category_new') }}">Nouvelle catégorie</a>
+                    <a href="{{ path('app_category_index') }}">Liste des catégories</a>
+                </div>
+            </li>
+        {% endif %}
+    </ul>
 </header>

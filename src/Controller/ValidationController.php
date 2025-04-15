@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\Score;
+use App\Entity\User;
 use App\Form\ResponseUserType;
 use App\Repository\QuestionRepository;
+use App\Repository\ScoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +33,7 @@ final class ValidationController extends AbstractController
     }
 
     #[Route('/validation/result', name: 'app_validation_result')]
-    public function result(SessionInterface $session, QuestionRepository $questionRepository, EntityManagerInterface $entityManager): Response
+    public function result(SessionInterface $session, QuestionRepository $questionRepository, EntityManagerInterface $entityManager, ScoreRepository $scoreRepository): Response
     {
     $responses = $session->get('response', []);
     $ids = $session->get('ids', []);
@@ -58,14 +61,17 @@ final class ValidationController extends AbstractController
         }
 
         // stocker la variable score dans la table User
-        $user = $this->getUser();
+    }
+    $user = $this->getUser();
 
-        if ($user) {
-            $user->setScore($score);
-            $entityManager->persist($user);
-            $entityManager->flush();
-            
-        }
+    if ($user instanceof User) {
+        $scoreEntity = new Score();
+        $scoreEntity->setUser($user);
+        $scoreEntity->setScore($score);
+        $scoreEntity->setTimestamp(new \DateTime());
+        $entityManager->persist($scoreEntity);
+        $entityManager->flush();
+        
     }
 
 
@@ -74,7 +80,7 @@ final class ValidationController extends AbstractController
             'questions' => $sortedQuestions,
             'session' => $session,
             'score' => $score,
-            'user' => $user,
+            'scoreEntity' => $scoreEntity,
         ]);
     }
 }

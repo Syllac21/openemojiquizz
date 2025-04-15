@@ -14,12 +14,14 @@ body {
     background-color: #333; 
     display: flex;
     justify-content: space-around;
+    overflow: visible;
 }
 
 
 .navbar li {
     flex: 1;
     text-align: center;
+    color: white;
 }
 
 
@@ -70,4 +72,140 @@ body {
 
 .correct {
     background-color: green;
+}
+
+/* ----------------------------------------------------- */
+/* tableau score */
+/* ----------------------------------------------------- */
+
+.score{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ----------------------------------------------------- */
+/* formulaire */
+/* ----------------------------------------------------- */
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des divs contenant les champs */
+form div {
+    margin-bottom: 15px;
+}
+
+/* Style des labels */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style des champs de texte et des zones de saisie */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Style des champs de texte et des zones de saisie au focus */
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Style des cases à cocher */
+form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Style des boutons de soumission */
+form button[type="submit"] {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style des boutons de soumission au survol */
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style des champs obligatoires */
+form .required {
+    color: teal;
+}
+
+/* Style des champs cachés */
+form input[type="hidden"] {
+    display: none;
+}
+
+
+/* ----------------------------------------------------- */
+/* drop down */
+/* ----------------------------------------------------- */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1; 
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(2, 46, 46);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000; 
+    left: 0; 
+    top: 100%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: teal;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color:  rgb(2, 46, 46);
+    padding: 3px;
 }
