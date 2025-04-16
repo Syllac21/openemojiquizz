@@ -31,6 +31,10 @@ Bienvenue dans le projet OpenEmoQuiz, une application web permettant aux utilisa
 3. **Configurer la base de données** :
 
 Dans le fichier .env configurez la ligne suivante avec vos paramètres :
+nom de l'utilisateur de votre base de donnée
+mot de passe
+nom de la base de donnée
+
 
 DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&charset=utf8mb4"
 
@@ -44,11 +48,17 @@ DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&cha
     ```bash
     symfony console doctrine\:migrations\:migrate
 
-6. **Lancer le serveur Symfony**
+## Utilisation
+
+1. **Lancer le serveur Symfony**
 
     ```bash
     symfony server:start
 
-7. **Acceder à l'application**
+2. **Acceder à l'application**
 
 Ouvrez votre navigateur et allez sur l'URL : localhost:8000
+
+Sur la page d'accueil, on vous invite soit à créer un compte, soit à vous connecter
+
+Bon jeu!!!

@@ -7,26 +7,26 @@
             {% if (not is_granted('ROLE_ADMIN'))%}
                 <li><a href="{{ path('app_question_new') }}">Proposer une question</a></li>
             {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="dropdown">
+                    <p class="dropbtn">Question</p>
+                    <div class="dropdown-content">
+                        <a href="{{ path('app_question_new') }}">Nouvelle question</a>
+                        <a href="{{ path('app_question_index') }}">Liste des questions</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <p class="dropbtn">Catégories</p>
+                    <div class="dropdown-content">
+                        <a href="{{ path('app_category_new') }}">Nouvelle catégorie</a>
+                        <a href="{{ path('app_category_index') }}">Liste des catégories</a>
+                    </div>
+                </li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
         {% else %}
             <li><a href="{{ path('app_login') }}">Se connecter</a></li>
             <li><a href="{{ path('app_register')}}">Créer un compte</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li class="dropdown">
-                <p class="dropbtn">Question</p>
-                <div class="dropdown-content">
-                    <a href="{{ path('app_question_new') }}">Nouvelle question</a>
-                    <a href="{{ path('app_question_index') }}">Liste des questions</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <p class="dropbtn">Catégories</p>
-                <div class="dropdown-content">
-                    <a href="{{ path('app_category_new') }}">Nouvelle catégorie</a>
-                    <a href="{{ path('app_category_index') }}">Liste des catégories</a>
-                </div>
-            </li>
         {% endif %}
     </ul>
 </header>
