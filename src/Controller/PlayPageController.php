@@ -16,7 +16,7 @@ final class PlayPageController extends AbstractController
     {
         $session->remove('ids');
         $session->remove('response');
-        $AllQuestions = $question_repository->findAll();
+        $AllQuestions = $question_repository->findAllValid();
         shuffle($AllQuestions);
         $question = array_slice($AllQuestions, 0, 5);
         $ids = array_map(function ($q) {

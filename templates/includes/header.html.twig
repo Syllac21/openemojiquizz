@@ -4,6 +4,9 @@
             <li><a href="{{ path('app_home_page') }}">Accueil</a></li>
             <li><a href="{{ path('app_play_page') }}">Jeux</a></li>
             <li><a href="{{ path('app_score') }}">Score</a></li>
+            {% if (not is_granted('ROLE_ADMIN'))%}
+                <li><a href="{{ path('app_question_new') }}">Proposer une question</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
         {% else %}
             <li><a href="{{ path('app_login') }}">Se connecter</a></li>

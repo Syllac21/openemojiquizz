@@ -96,7 +96,7 @@ main{
 /* ----------------------------------------------------- */
 
 form {
-    max-width: 500px;
+    min-width: 500px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -170,6 +170,11 @@ form .required {
 /* Style des champs cachés */
 form input[type="hidden"] {
     display: none;
+}
+
+#question_categories{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 

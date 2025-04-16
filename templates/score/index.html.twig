@@ -45,7 +45,7 @@
                 <tbody>
                     {% for score in highScore %}
                     <tr>
-                        <td>{{ score.user.email }}</td>
+                        <td>{{ score.user.username }}</td>
                         <td>{{ score.score }}</td>
                         <td>{{ score.timestamp | date("d M Y") }}</td>
                     </tr>

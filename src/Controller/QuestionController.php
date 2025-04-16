@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\User;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,8 +29,17 @@ final class QuestionController extends AbstractController
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
+        $user= $this->getUser();
+        if ($this->isGranted('ROLE_ADMIN')){
+            $isValid = true;
+        }else{
+            $isValid = false;
+        }
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $question->setUser($user);
+            $question->setIsValid($isValid);
             $entityManager->persist($question);
             $entityManager->flush();
 
@@ -39,6 +49,7 @@ final class QuestionController extends AbstractController
         return $this->render('question/new.html.twig', [
             'question' => $question,
             'form' => $form,
+            
         ]);
     }
 

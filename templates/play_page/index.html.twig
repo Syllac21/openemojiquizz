@@ -17,9 +17,11 @@
         'method': 'POST'
     }) }}
     
+        {# {{ dump(questions) }} #}
         <table>
             <thead>
                 <tr>
+                <th>auteur</th>
                 <th>proposition 1</th>
                 <th>proposition 2</th>
                 <th>proposition 3</th>
@@ -27,9 +29,9 @@
                 </tr>
             </thead>
             
-        {# {{ dump(categories) }} #}
             {% for question in questions %}
                 <tr>
+                    <td>{{ question.user.username }}</td>
                     <td> {{categories[loop.index -1]}} </td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image1 ~ '.png')}}" alt="oups"></td>
                     <td><img src="{{ asset('images/emoji/' ~ question.image2 ~ '.png')}}" alt="oups"></td>

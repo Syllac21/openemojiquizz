@@ -33,6 +33,12 @@ class Question
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'questions')]
     private Collection $categories;
 
+    #[ORM\Column]
+    private ?bool $isValid = null;
+
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -112,6 +118,30 @@ class Question
     public function removeCategory(Category $category): static
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function isValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): static
+    {
+        $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

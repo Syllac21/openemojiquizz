@@ -14,6 +14,7 @@
                 <th>Image2</th>
                 <th>Image3</th>
                 <th>Response</th>
+                <th>Validées</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td>{{ question.image2 }}</td>
                 <td>{{ question.image3 }}</td>
                 <td>{{ question.response }}</td>
+                <td>{{ question.isValid ? 'yes' : 'no' }}</td>
                 <td>
                     <a href="{{ path('app_question_show', {'id': question.id}) }}">show</a>
                     <a href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>

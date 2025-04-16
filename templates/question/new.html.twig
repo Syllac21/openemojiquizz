@@ -4,9 +4,45 @@
 
 {% block body %}
 <main>
-    <h1>Create new Question</h1>
+    <h1>Nouvelle Question</h1>
+    {{ form_start(form,{
+        'action': path('app_question_new'),
+        'method': 'POST'
+    }) }}
+        {{ form_label(form.image1) }}
 
-    {{ include('question/_form.html.twig') }}
+        {{ form_widget(form.image1) }}
+        
+        {{ form_label(form.image2) }}
+
+        {{ form_widget(form.image2) }}
+
+        {{ form_label(form.image3) }}
+
+        {{ form_widget(form.image3) }}
+
+        {{ form_label(form.response) }}
+
+        {{ form_widget(form.response) }}
+
+        {{ form_label(form.categories) }}
+        
+        {{ form_widget(form.categories) }}
+
+        {% if (is_granted('ROLE_ADMIN')) %}
+
+            {{ form_label(form.isValid) }}
+
+            {{ form_widget(form.isValid) }}
+        {% else %}
+            
+        {% endif %}
+
+        <button type='submit'>valider</button>
+
+    {{ form_end(form) }}
+
+    {# {{ include('question/_form.html.twig') }} #}
 
     <a href="{{ path('app_question_index') }}">back to list</a>
 

@@ -16,6 +16,15 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findAllValid(): array
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.isValid = :val')
+            ->setParameter('val', true)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Question[] Returns an array of Question objects
     //     */
