@@ -36,3 +36,15 @@ DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&cha
 4. **Créer la base de données**
 
 symfony console doctrine\:database\:create
+
+5. **Faire les migrations**
+
+symfony console doctrine\:migrations\:migrate
+
+6. **Lancer le serveur Symfony**
+
+symfony server:start
+
+7. **Acceder à l'application**
+
+Ouvrez votre navigateur et allez sur l'URL : localhost:8000
