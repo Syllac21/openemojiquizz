@@ -25,7 +25,8 @@ Bienvenue dans le projet OpenEmoQuiz, une application web permettant aux utilisa
 
 2. **Installer les dépendances** :
 
-composer install
+    ```bash
+    composer install
 
 3. **Configurer la base de données** :
 
@@ -35,15 +36,18 @@ DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&cha
 
 4. **Créer la base de données**
 
-symfony console doctrine\:database\:create
+    ```bash
+    symfony console doctrine\:database\:create
 
 5. **Faire les migrations**
 
-symfony console doctrine\:migrations\:migrate
+    ```bash
+    symfony console doctrine\:migrations\:migrate
 
 6. **Lancer le serveur Symfony**
 
-symfony server:start
+    ```bash
+    symfony server:start
 
 7. **Acceder à l'application**
 
