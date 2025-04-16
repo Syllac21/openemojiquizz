@@ -22,9 +22,9 @@
         {% for question in questions %}
             <tr>
                 <td>{{ question.id }}</td>
-                <td>{{ question.image1 }}</td>
-                <td>{{ question.image2 }}</td>
-                <td>{{ question.image3 }}</td>
+                <td><img src="{{ asset('images/emoji/' ~ question.image1 ~ '.png')}}" alt="oups"></td>
+                <td><img src="{{ asset('images/emoji/' ~ question.image2 ~ '.png')}}" alt="oups"></td>
+                <td><img src="{{ asset('images/emoji/' ~ question.image3 ~ '.png')}}" alt="oups"></td>
                 <td>{{ question.response }}</td>
                 <td>{{ question.isValid ? 'yes' : 'no' }}</td>
                 <td>

@@ -35,9 +35,10 @@ class QuestionType extends AbstractType
                     'multiple' => true,
                 ])
                 ->add('isValid', ChoiceType::class, [
+                    'label' => 'La question est-elle valide ?',
                     'choices' => [
-                        'Yes' => true,
-                        'No' => false,
+                        'oui' => true,
+                        'non' => false,
                     ],
                     'expanded' => true,
                     'multiple' => false,
