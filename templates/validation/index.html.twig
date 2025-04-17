@@ -18,7 +18,7 @@
                 <th>proposition 3</th>
                 <th>Votre réponse</th>
                 <th>Bonne réponse</th>
-                <th>juste/faux</th>
+        
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,6 @@
                     <td><img src="{{ asset('images/emoji/' ~ question['question'].image3 ~ '.png')}}" alt="oups"></td>
                     <td>{{ responses['response' ~ loop.index] }}</td>
                     <td>{{ question['question'].response }}</td>
-                    <td>{{ question.isCorrect}} </td>
                 </tr>
             {% endfor %}
         </tbody>
