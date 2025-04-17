@@ -41,12 +41,12 @@ DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&cha
 4. **Créer la base de données**
 
     ```bash
-    symfony console doctrine\:database\:create
+    symfony console doctrine:database:create
 
 5. **Faire les migrations**
 
     ```bash
-    symfony console doctrine\:migrations\:migrate
+    symfony console doctrine:migrations:migrate
 
 ## Utilisation
 
